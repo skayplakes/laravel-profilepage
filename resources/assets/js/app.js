@@ -1,4 +1,4 @@
-
+import router from './routes.js';
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -9,6 +9,10 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import VueRouter from 'vue-router'
+
+Vue.use(VueRouter)
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -16,9 +20,34 @@ window.Vue = require('vue');
  */
 
 Vue.component('example', require('./components/Example.vue'));
+Vue.component('chat-message', require('./components/ChatMessage.vue'));
+Vue.component('chat-log', require('./components/ChatLog.vue'));
+Vue.component('chat-composer', require('./components/ChatComposer.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+    	messages: []
+    },
+    // router, 
+    methods: {
+    	addMessage(message) {
+    		//add to existing messages
+    		this.messages.push(message);
+
+    		//persists messages to the database
+            axios.post('/messages', message).then(response => {
+                
+            })
+
+    	}
+    },
+
+    created() {
+        axios.get('/messages').then(response => {
+            this.messages = response.data;
+        });
+    }
 });
 
 

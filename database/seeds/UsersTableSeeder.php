@@ -13,14 +13,14 @@ class UsersTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
 
-        $limit = 30;
+        $limit = 10;
 
         for ($i = 0; $i < $limit; $i++) {
         	DB::table('users')->insert([
         		'name' => $faker->name,
         		'email' => $faker->unique()->email,
         		'password' => bcrypt('secret'),
-        		'avatar' => $faker->imageUrl($width = 200, $height = 200),
+        		// 'avatar' => $faker->imageUrl($width = 200, $height = 200),
         	]);
         }
     }

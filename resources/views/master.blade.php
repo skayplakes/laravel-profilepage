@@ -16,7 +16,10 @@
 
 <body id="app">
 
+
 	@yield("content")
+
+
 
 	<!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

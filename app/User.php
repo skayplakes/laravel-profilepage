@@ -26,4 +26,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function messages() {
+        {
+            //sets up the relationship between User model and Message model
+            return $this->hasMany(Message::class); 
+        }
+    }
 }
